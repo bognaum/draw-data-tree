@@ -2,6 +2,7 @@
 class DefaultDrawOptions {
 	constructor () {
 		this.result = "";
+		this.chProp = "ch";
 	}
 	addHeader      (m) {
 		this.result += `${ m.ch ? "(/)" : "━#━" } ${ m.name }`;

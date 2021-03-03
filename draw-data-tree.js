@@ -1,7 +1,6 @@
 "use strict";
 function assemblyTree(treeModel, o) {
-
-	o.getPath = o.getPath || ((pathArr) => pathArr.join("/"));
+	const chProp = o.chProp || "ch"
 	
 	let 
 		lastChildStateArr = [],
@@ -17,15 +16,15 @@ function assemblyTree(treeModel, o) {
 			o.initNodeBefore(mNode);
 
 		createRow(mNode, 1);
-		lastChildStateArr.push(!(mNode.ch && mNode.ch.length));
+		lastChildStateArr.push(!(mNode[chProp] && mNode[chProp].length));
 		mArr.push(mNode);
 
-		if (mNode.ch) {
-			let lastChIndex = mNode.ch.length - 1
-			for (let i = 0; i < mNode.ch.length; i++) {
+		if (mNode[chProp]) {
+			let lastChIndex = mNode[chProp].length - 1
+			for (let i = 0; i < mNode[chProp].length; i++) {
 
 				lastChildStateArr[lastChildStateArr.length - 1] = i == lastChIndex;
-				recursive(mNode.ch[i]);
+				recursive(mNode[chProp][i]);
 			}
 		}
 
