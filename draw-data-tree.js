@@ -5,7 +5,7 @@ function assemblyTree(treeModel, o) {
 	
 	let 
 		lastChildStateArr = [],
-		yi = 0,
+		rI = 0,
 		mArr = []
 
 	recursive(treeModel);
@@ -19,8 +19,6 @@ function assemblyTree(treeModel, o) {
 		createRow(mNode, 1);
 		lastChildStateArr.push(!(mNode.ch && mNode.ch.length));
 		mArr.push(mNode);
-		// o.addSecondHeaderLine && createRow(mNode, 2);
-		// createRow(mNode);
 
 		if (mNode.ch) {
 			let lastChIndex = mNode.ch.length - 1
@@ -39,9 +37,9 @@ function assemblyTree(treeModel, o) {
 	}
 
 	function createRow(mNode, rowType) {
-		let xi = 0;
+		let cI = 0;
 		if (o.newRow)
-			o.newRow(mNode, yi);
+			o.newRow(mNode, rI);
 
 		let 
 			len = lastChildStateArr.length,
@@ -54,23 +52,14 @@ function assemblyTree(treeModel, o) {
 			else
 				type = lastChildStateArr[k] ? "e" : "v";
 
-			let yxi = [yi, xi];
-			o.addBranchEl(type, mArr[k] ,yxi);
-			xi ++;
+			o.addBranchEl(type, mArr[k], {row: rI, cell: cI});
+			cI ++;
 		}
-		
-		let yxi = [yi, xi];
-
-		if (rowType == 1) {
-			o.addHeader(mNode, yxi);
-		} else if (rowType == 2 && o.addHExt) {
-			o.addSecondHeaderLine(mNode ,yxi);
-		} 
+		o.addHeader(mNode, {row: rI, cell: cI});
 
 		if (o.endOfRow)
-			o.endOfRow(mNode, yi);
-
-		yi ++;
+			o.endOfRow(mNode, rI);
+		rI ++;
 	}
 
 }

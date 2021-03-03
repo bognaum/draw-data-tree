@@ -1,14 +1,12 @@
-class DrawOptions {
+"use strict";
+class DefaultDrawOptions {
 	constructor () {
 		this.result = "";
 	}
-	initNodeBefore (m)      {}
-	newRow         (m, yi)  {}
-	addHeader      (m, yxi) {
-		this.result += m.ch ? "(/)" : "━#━";
-		this.result += ` ${m.name}`;
+	addHeader      (m) {
+		this.result += `${ m.ch ? "(/)" : "━#━" } ${ m.name }`;
 	}
-	addBranchEl    (type, m, yxi) {
+	addBranchEl    (type) {
 		this.result += 
 			type == "v" ? " ┃ " :
 			type == "f" ? " ┣━" :
@@ -16,8 +14,18 @@ class DrawOptions {
 			type == "e" ? "   " :
 				"ERR";
 	}
-	endOfRow       (m, yi) {this.result += "\n";}
-	initNodeAfter  (m) {}
+	endOfRow       (m) {this.result += "\n";}
 }
 
-graph1.textContent = assemblyTree(t_01, new DrawOptions()).result;
+graph1.textContent = assemblyTree(t_01, new DefaultDrawOptions()).result;
+
+
+class AllDrawOptions {
+	constructor    (              ) {}
+	initNodeBefore (m             ) {}
+	newRow         (m   , rI      ) {}
+	addHeader      (m   , r_c     ) {}
+	addBranchEl    (type, m  , r_c) {}
+	endOfRow       (m   , rI      ) {}
+	initNodeAfter  (m             ) {}
+}
