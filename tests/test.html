@@ -6,27 +6,53 @@
 	<title>test</title>
 </head>
 <body>
-	<h3>Simple</h3>
-	<p>Simple text from object as template. The '.ch' property is a child nodes collection.</p>
-	<pre id="graph1"></pre>
-
-	<h3>DOM-model as template</h3>
+	<h3>About templates</h3>
 	<p>
-		For example you may use a DOM-model as template. To use DOM-model as template, you need set the '.childProp' option as "children", because in DOM-model the children collections has name '.children' .
+		The template is an object as node with a list of children nodes collection (or without children).
 	</p>
-	<pre id="graph2"></pre>
-
-	<h3>Added numbers of rows</h3>
-	<pre id="graph3"></pre>
+	<pre>
+		<script style="display: inline; tab-size: 4; -moz-tab-size: 4;">
+			const t_01 = {
+				name: "draw-data-tree",
+				ch: [
+					{
+						name: "tests",
+						ch: [
+							{name: "script.js"},
+							{name: "test.html"}
+						]
+					},
+					{name: "draw-data-tree.js"}
+				]
+			}
+		</script>
+	</pre>
+	<h3>Simple using</h3>
+	<p>
+		Simple text from object as template, which describes a folder content. The '.ch' property in template is a child nodes collection.
+	</p>
+	<pre id="simpleUsingGraph"></pre>
 
 	<h3>Another way to create graph</h3>
 	<p>
 		In this example the graph is assembled from created HTML elements.
 	</p>
-	<pre id="graph4"></pre>
+	<pre id="fromElementsBuildedGraph"></pre>
 
+	<h3>DOM-model as template</h3>
+	<p>
+		For example you may use a DOM-model as template. To use DOM-model as template, you need set the '.childProp' option as "children", because in DOM-model the children collections has name '.children' .
+	</p>
+	<pre id="domAsTemplate"></pre>
+
+	<h3>Added numbers of rows</h3>
+	<pre id="withNumbers"></pre>
+
+
+	<!-- business logic -->
 	<script type="text/javascript" src="../draw-data-tree.js"></script>
-	<script type="text/javascript" src="./t_01.js"></script>
+
+	<!-- using -->
 	<script type="text/javascript" src="./script.js"></script>
 </body>
 </html>

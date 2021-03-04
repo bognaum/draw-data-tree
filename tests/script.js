@@ -21,60 +21,14 @@ class DefaultDrawOptions {
 	endOfRow       (m) {this.result += "\n";}
 }
 
-graph1.textContent = assemblyTree(t_01, new DefaultDrawOptions()).result;
-
-// ----------------------------------------------------------
-// DOM-model as template
-
-class Orts2 extends DefaultDrawOptions {
-	constructor () {
-		super();
-		this.chProp = "children";
-	}
-	addHeader      (m) {
-		const arr = [m.localName];
-		if (m.id)
-			arr.push("#"+m.id);
-		if (m.classList.length)
-			arr.push("."+[].join.call(m.classList, "."));
-		if (m.src)
-			arr.push(` src="${m.src}"`)
-		this.result += `<${ arr.join("") }>`;
-	}
-}
-
-graph2.textContent = assemblyTree(document.documentElement, new Orts2()).result;
-
-// ----------------------------------------------------------
-// Added numbers of rows
-
-class Orts3 extends DefaultDrawOptions {
-	newRow         (m   , rI      ) {
-		this.result += (rI + 1).toString().padStart(4, " ") + ". ";
-	}
-	constructor () {
-		super();
-		this.chProp = "children";
-	}
-	addHeader      (m) {
-		const arr = [m.localName];
-		if (m.id)
-			arr.push("#"+m.id);
-		if (m.classList.length)
-			arr.push("."+[].join.call(m.classList, "."));
-		if (m.src)
-			arr.push(` src="${m.src}"`)
-		this.result += `<${ arr.join("") }>`;
-	}
-}
-
-graph3.textContent = assemblyTree(document.documentElement, new Orts3()).result;
+document.querySelector("#simpleUsingGraph").
+	textContent = assemblyTree(t_01, new DefaultDrawOptions()).result;
 
 // ----------------------------------------------------------
 // Another way to create graph
 
 
-class Opts4 extends DefaultDrawOptions {
+class EBOptions extends DefaultDrawOptions {
 	constructor (container) {
 		super ();
 		this.result = null;
@@ -118,7 +72,47 @@ class Opts4 extends DefaultDrawOptions {
 	}
 }
 
-assemblyTree(t_01, new Opts4(graph4));
+assemblyTree(t_01, new EBOptions(document.querySelector("#fromElementsBuildedGraph")));
+
+
+// ----------------------------------------------------------
+// DOM-model as template
+
+class DTOptions extends DefaultDrawOptions {
+	constructor () {
+		super();
+		this.chProp = "children";
+	}
+	addHeader      (m) {
+		const arr = [m.localName];
+		if (m.id)
+			arr.push("#"+m.id);
+		if (m.classList.length)
+			arr.push("."+[].join.call(m.classList, "."));
+		if (m.src)
+			arr.push(` src="${m.src}"`)
+		this.result += `<${ arr.join("") }>`;
+	}
+}
+
+document.querySelector("#domAsTemplate").
+	textContent = assemblyTree(document.documentElement, new DTOptions()).result;
+
+// ----------------------------------------------------------
+// Added numbers of rows
+
+class WithNumbers extends DTOptions {
+	newRow         (m   , rI      ) {
+		this.result += (rI + 1).toString().padStart(4, " ") + ". ";
+	}
+	constructor () {
+		super();
+	}
+}
+
+document.querySelector("#withNumbers").
+	textContent = assemblyTree(document.documentElement, new WithNumbers()).result;
+
 
 // ----------------------------------------------------------
 // All supported methods
