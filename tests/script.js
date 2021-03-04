@@ -7,10 +7,10 @@ class DefaultDrawOptions {
 		this.result = "";
 		this.chProp = "ch";
 	}
-	addHeader      (m) {
+	addHeader (m) {
 		this.result += `${ m.ch ? "(/)" : "━#━" } ${ m.name }`;
 	}
-	addBranchEl    (type) {
+	addBranchEl (type) {
 		this.result += 
 			type == "v" ? " ┃ " :
 			type == "f" ? " ┣━" :
@@ -18,7 +18,7 @@ class DefaultDrawOptions {
 			type == "e" ? "   " :
 				"ERR";
 	}
-	endOfRow       (m) {this.result += "\n";}
+	endOfRow (m) {this.result += "\n";}
 }
 
 document.querySelector("#simpleUsingGraph").
@@ -37,11 +37,11 @@ class EBOptions extends DefaultDrawOptions {
 	beforeAssembly (model) {
 		this.container.innerHTML = "";
 	}
-	newRow         (m   , rI      ) {
+	newRow (m, rI) {
 		this.currRow = this.eHTML(`<div class="row"></div>`);
 		this.container.append(this.currRow);
 	}
-	addHeader      (m   , r_c     ) {
+	addHeader (m, r_c) {
 		const header = this.eHTML([
 			`<span class="header">`,
 				`<span class="symbol">${ m.ch ? "(/)" : "━#━" }</span>`,
@@ -51,7 +51,7 @@ class EBOptions extends DefaultDrawOptions {
 		].join(""));
 		this.currRow.append(header);
 	}
-	addBranchEl    (type, m  , r_c) {
+	addBranchEl (type, m, r_c) {
 		const inner = 
 			type == "v" ? " ┃ " :
 			type == "f" ? " ┣━" :
@@ -62,7 +62,7 @@ class EBOptions extends DefaultDrawOptions {
 
 		this.currRow.append(el);
 	}
-	endOfRow       (m   , rI      ) {}
+	endOfRow (m, rI) {}
 	eHTML(code, shell=null) {
 		const _shell = 
 			! shell                  ? document.createElement("div") :
@@ -85,7 +85,7 @@ class DTOptions extends DefaultDrawOptions {
 		super();
 		this.chProp = "children";
 	}
-	addHeader      (m) {
+	addHeader (m) {
 		const arr = [m.localName];
 		if (m.id)
 			arr.push("#"+m.id);
@@ -109,7 +109,7 @@ document.querySelector("#domAsTemplate").
 // Added numbers of rows
 
 class WithNumbers extends DTOptions {
-	newRow         (m   , rI      ) {
+	newRow (m   , rI      ) {
 		this.result += (rI + 1).toString().padStart(4, " ") + ". ";
 	}
 	constructor () {
@@ -128,10 +128,10 @@ class AllDrawOptions {
 	constructor    (              ) {
 		this.chProp = "ch";
 	}
-	beforeAssembly (model         ) {}
-	newRow         (m   , rI      ) {}
-	addHeader      (m   , r_c     ) {}
-	addBranchEl    (type, m  , r_c) {}
-	endOfRow       (m   , rI      ) {}
-	afterAssembly  (model         ) {}
+	beforeAssembly (model          ) {}
+	newRow         (m    , rI      ) {}
+	addHeader      (m    , r_c     ) {}
+	addBranchEl    (type , m  , r_c) {}
+	endOfRow       (m    , rI      ) {}
+	afterAssembly  (model          ) {}
 }
