@@ -12,9 +12,6 @@ function assemblyTree(treeModel, o) {
 		
 
 	function recursive(mNode) {
-		if (o.initNodeBefore)
-			o.initNodeBefore(mNode);
-
 		createRow(mNode, 1);
 		lastChildStateArr.push(!(mNode[chProp] && mNode[chProp].length));
 		mArr.push(mNode);
@@ -30,9 +27,6 @@ function assemblyTree(treeModel, o) {
 
 		lastChildStateArr.pop();
 		mArr.pop();
-
-		if (o.initNodeAfter)
-			o.initNodeAfter(mNode);
 	}
 
 	function createRow(mNode, rowType) {

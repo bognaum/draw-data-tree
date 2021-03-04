@@ -126,10 +126,8 @@ class AllDrawOptions {
 	constructor    (              ) {
 		this.chProp = "ch";
 	}
-	initNodeBefore (m             ) {}
 	newRow         (m   , rI      ) {}
 	addHeader      (m   , r_c     ) {}
 	addBranchEl    (type, m  , r_c) {}
 	endOfRow       (m   , rI      ) {}
-	initNodeAfter  (m             ) {}
 }
