@@ -90,8 +90,13 @@ class DTOptions extends DefaultDrawOptions {
 		if (m.classList.length)
 			arr.push("."+[].join.call(m.classList, "."));
 		if (m.src)
-			arr.push(` src="${m.src}"`)
-		this.result += `<${ arr.join("") }>`;
+			arr.push(` src="${m.src}"`);
+
+		let content = "";
+		if (m.localName == "h3")
+			content = `"${ m.textContent }"`;
+
+		this.result += `<${ arr.join("") }> ${ content }`;
 	}
 }
 
