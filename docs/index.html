@@ -3,12 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>test</title>
+	<style type="text/css">
+		body {
+			margin: 50px 100px 300px 100px;
+		}
+	</style>
+	<title>Tree graph</title>
 </head>
 <body>
 	<h3>About templates</h3>
 	<p>
-		The template is an object as node with a list of children nodes collection (or without children).
+		The template is an object as node with a list of child nodes collection (or without child nodes). By default child nodes collections have name 'ch', but it can be changed.
+	</p>
+	<p>
+		For example:
 	</p>
 	<pre>
 		<script style="display: inline; tab-size: 4; -moz-tab-size: 4;">
@@ -29,13 +37,13 @@
 	</pre>
 	<h3>Simple using</h3>
 	<p>
-		Simple text from object as template, which describes a folder content. The '.ch' property in template is a child nodes collection.
+		Previous template is rendered to next simple text.
 	</p>
 	<pre id="simpleUsingGraph"></pre>
 
 	<h3>Another way to create graph</h3>
 	<p>
-		In this example the graph is assembled from created HTML elements.
+		In next example the graph is assembled from separate HTML elements created during assembly.
 	</p>
 	<pre id="fromElementsBuildedGraph"></pre>
 
