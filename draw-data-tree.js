@@ -1,5 +1,7 @@
 "use strict";
 function assemblyTree(treeModel, o) {
+	if (o.beforeAssembly)
+		o.beforeAssembly(treeModel);
 	const chProp = o.chProp || "ch"
 	
 	let 
@@ -8,6 +10,9 @@ function assemblyTree(treeModel, o) {
 		mArr = []
 
 	recursive(treeModel);
+
+	if (o.afterafterAssembly)
+		o.afterafterAssembly(treeModel);
 	return o;
 		
 

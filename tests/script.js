@@ -33,6 +33,8 @@ class EBOptions extends DefaultDrawOptions {
 		super ();
 		this.result = null;
 		this.container = container;
+	}
+	beforeAssembly (model) {
 		this.container.innerHTML = "";
 	}
 	newRow         (m   , rI      ) {
@@ -126,8 +128,10 @@ class AllDrawOptions {
 	constructor    (              ) {
 		this.chProp = "ch";
 	}
+	beforeAssembly (model         ) {}
 	newRow         (m   , rI      ) {}
 	addHeader      (m   , r_c     ) {}
 	addBranchEl    (type, m  , r_c) {}
 	endOfRow       (m   , rI      ) {}
+	afterAssembly  (model         ) {}
 }
