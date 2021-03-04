@@ -6,13 +6,13 @@
 	<title>Corona-virus</title>
 </head>
 <body>
-	<h1>Redirect to <a href="./docs/index.html">./docs/index.html</a></h1>
+	<h1>Redirect to <a href="./tests/index.html">./tests/index.html</a></h1>
 	<script type="text/javascript">
 		const
 			l = location,
 			arr = l.pathname.split("/"),
 			name = arr.pop(),
-			newPathname = arr.join("/") + "/docs/index.html",
+			newPathname = arr.join("/") + "/tests/index.html",
 			newURL = l.origin + newPathname + l.search + l.hash;
 		location.replace(newURL);
 	</script>
