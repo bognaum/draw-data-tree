@@ -17,7 +17,7 @@ function assemblyTree(treeModel, o) {
 		
 
 	function recursive(mNode) {
-		createRow(mNode, 1);
+		createRow(mNode, 0);
 		lastChildStateArr.push(!(mNode[chProp] && mNode[chProp].length));
 		mArr.push(mNode);
 
@@ -42,10 +42,9 @@ function assemblyTree(treeModel, o) {
 		let 
 			len = lastChildStateArr.length,
 			lastK = len - 1;
-		for (let k = 0; k < len; k++) {
-			let type;
+		for (let k = 0, type; k < len; k++) {
 
-			if (rowType == 1 && k == lastK) 
+			if (rowType === 0 && k == lastK) 
 				type = lastChildStateArr[k] ? "c" : "f";
 			else
 				type = lastChildStateArr[k] ? "e" : "v";
