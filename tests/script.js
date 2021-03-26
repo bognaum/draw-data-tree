@@ -44,7 +44,11 @@ class EBOptions extends DefaultDrawOptions {
 	addHeader (m, r_c) {
 		const header = this.eHTML([
 			`<span class="header">`,
-				`<span class="symbol">${ m.ch ? "(/)" : "━#━" }</span>`,
+				`<span `,
+					`class="symbol"`,
+					`title="row: ${r_c.row}; cell: ${r_c.cell}"`,
+					`style="cursor: pointer;"`,
+				`>${ m.ch ? "(/)" : "━#━" }</span>`,
 				` `,
 				`<span class="name">${ m.name }</span>`,
 			`</span>`
@@ -58,7 +62,15 @@ class EBOptions extends DefaultDrawOptions {
 			type == "c" ? " ┗━" :
 			type == "e" ? "   " :
 				"ERR",
-			el = this.eHTML(`<span class="branch">${ inner }</span>`);
+			el = this.eHTML(
+				`<span ` +
+					`class="branch" ` +
+					`title="row: ${r_c.row}; cell: ${r_c.cell}"` + 
+					`style="cursor: pointer;"` +
+				`>` + 
+					`${ inner }` + 
+				`</span>`
+			);
 
 		this.currRow.append(el);
 	}

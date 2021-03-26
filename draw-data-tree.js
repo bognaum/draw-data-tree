@@ -9,49 +9,45 @@ function assemblyTree(treeModel, o) {
 		rI = 0,
 		mArr = []
 
-	recursive(treeModel);
+	recursive(0, "", treeModel);
 
 	if (o.afterafterAssembly)
 		o.afterafterAssembly(treeModel);
 	return o;
 		
 
-	function recursive(mNode) {
-		createRow(mNode, 0);
-		lastChildStateArr.push(!(mNode[chProp] && mNode[chProp].length));
+	function recursive(depth, mask, mNode) {
+		createRow(depth, mask, mNode, 0);
 		mArr.push(mNode);
 
 		if (mNode[chProp]) {
 			let lastChIndex = mNode[chProp].length - 1
-			for (let i = 0; i < mNode[chProp].length; i++) {
-
-				lastChildStateArr[lastChildStateArr.length - 1] = i == lastChIndex;
-				recursive(mNode[chProp][i]);
+			for (let i = 0, len = mNode[chProp].length; i < len; i++) {
+				if (i < len - 1)
+					recursive(depth + 1, mask+"0", mNode[chProp][i]);
+				else if (i == len - 1)
+					recursive(depth + 1, mask+"1", mNode[chProp][i]);
 			}
 		}
 
-		lastChildStateArr.pop();
 		mArr.pop();
 	}
 
-	function createRow(mNode, rowType) {
+	function createRow(depth, mask, mNode, numInHeader) {
 		let cI = 0;
 		if (o.newRow)
 			o.newRow(mNode, rI);
+		for (let k = 0, type; k < depth; k ++) {
 
-		let 
-			len = lastChildStateArr.length,
-			lastK = len - 1;
-		for (let k = 0, type; k < len; k++) {
+			if (mask[k] == "0")
+				type = k < depth - 1 ? "v" : "f";
+			else if (mask[k] == "1")
+				type = k < depth - 1 ? "e" : "c";
 
-			if (rowType === 0 && k == lastK) 
-				type = lastChildStateArr[k] ? "c" : "f";
-			else
-				type = lastChildStateArr[k] ? "e" : "v";
-
+			cI = k;
 			o.addBranchEl(type, mArr[k], {row: rI, cell: cI});
-			cI ++;
 		}
+		cI ++;
 		o.addHeader(mNode, {row: rI, cell: cI});
 
 		if (o.endOfRow)
