@@ -65,7 +65,8 @@ class EBOptions extends DefaultDrawOptions {
 			el = this.eHTML(
 				`<span ` +
 					`class="branch" ` +
-					`title="row: ${r_c.row}; cell: ${r_c.cell}"` + 
+					`title="row: ${r_c.row}; cell: ${r_c.cell};` + 
+						`\n from: ${m.name}"` + 
 					`style="cursor: pointer;"` +
 				`>` + 
 					`${ inner }` + 
