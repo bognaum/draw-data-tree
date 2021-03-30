@@ -5,7 +5,6 @@ function assemblyTree(treeModel, o) {
 	const chProp = o.chProp || "ch"
 	
 	let 
-		lastChildStateArr = [],
 		rI = 0,
 		mArr = []
 
@@ -37,17 +36,14 @@ function assemblyTree(treeModel, o) {
 		let cI = 0;
 		if (o.newRow)
 			o.newRow(mNode, rI);
-		for (let k = 0, type; k < depth; k ++) {
+		for (let type; cI < depth; cI ++) {
 
-			if (mask[k] == "0")
-				type = k < depth - 1 ? "v" : "f";
-			else if (mask[k] == "1")
-				type = k < depth - 1 ? "e" : "c";
-
-			cI = k;
-			o.addBranchEl(type, mArr[k], {row: rI, cell: cI});
+			if (mask[cI] == "0")
+				type = cI < depth - 1 ? "v" : "f";
+			else if (mask[cI] == "1")
+				type = cI < depth - 1 ? "e" : "c";
+			o.addBranchEl(type, mArr[cI], {row: rI, cell: cI});
 		}
-		cI ++;
 		o.addHeader(mNode, {row: rI, cell: cI});
 
 		if (o.endOfRow)
