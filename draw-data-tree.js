@@ -52,3 +52,11 @@ function assemblyTree(treeModel, o) {
 	}
 
 }
+
+
+// beforeAssembly
+// afterafterAssembly
+// newRow
+// addBranchEl
+// addHeader
+// endOfRow
